@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Film notification client
+    </title>
+</head>
+<body>
+<div class="events"></div>
+<script>
+	var socket = new WebSocket('ws://localhost:8080/ws/films');
+
+    socket.onopen = function() {
+        console.log("clientWebSocket.onopen", socket);
+        console.log("clientWebSocket.readyState", "websocketstatus");
+        socket.send("event-me-from-browser");
+    }
+    socket.onclose = function(error) {
+        console.log("clientWebSocket.onclose", socket, error);
+        events("Closing connection");
+    }
+    socket.onerror = function(error) {
+        console.log("clientWebSocket.onerror", socket, error);
+        events("An error occured");
+    }
+    socket.onmessage = function(error) {
+        console.log("clientWebSocket.onmessage", socket, error);
+        events(error.data);
+    }
+    function events(responseEvent) {
+        document.querySelector(".events").innerHTML += responseEvent + "<br>";
+    }
+</script>
+</body>
+</html>
