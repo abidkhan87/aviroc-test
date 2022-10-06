@@ -42,7 +42,7 @@ npm run start
 
 | Plugin | Download link |
 | ------ | ------ |
-| Postman | [https://www.postman.com/downloads/][PlDb] |
+| Postman | [https://www.postman.com/downloads/]|
 
 
 ## Testing
